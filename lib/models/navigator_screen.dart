@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/tab.dart';
 import 'package:shoot_it/files/pages/first_screen.dart';
+import '../models/tab.dart';
+
 
 class TabNavigator extends StatelessWidget {
   const TabNavigator(
@@ -14,7 +15,7 @@ class TabNavigator extends StatelessWidget {
       key: navigatorKey,
       onGenerateRoute: (routeSettings) {
         Widget currentPage;
-        if (tabItem == TabItem.IDIA) {
+        if (tabItem == TabItem.IDEA) {
           currentPage = const First_screen();
         } else if (tabItem == TabItem.NOTES) {
           currentPage = const First_screen();          // **
