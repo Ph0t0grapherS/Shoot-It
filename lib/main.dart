@@ -8,13 +8,12 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shoot It',
       theme: ThemeData(
-        textTheme: Theme.of(context).textTheme.apply(bodyColor: Color(0xFFe9edf5)),
+        textTheme: Theme.of(context).textTheme.apply(bodyColor: const Color(0xFFe9edf5)),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: const ActiveScreen(),
