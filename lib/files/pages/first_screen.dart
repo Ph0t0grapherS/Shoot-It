@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-//import 'package:shoot_it/files/shoot_it.dart';
+import 'package:shoot_it/files/pages/settings_screen.dart';
+import 'package:shoot_it/files/pages/view_screen.dart';
 
 
 class First_screen extends StatelessWidget {
@@ -10,13 +11,14 @@ class First_screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.only(left: 30, right: 30),
-            color: Colors.blueGrey.shade900,
+            //alignment: Alignment.,
+            //padding: const EdgeInsets.only(left: 30, right: 30),
+            color: const Color(0xff1d4663),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding: const EdgeInsets.only(top: 20, bottom: 30),
+                  padding: const EdgeInsets.only(top: 10, bottom: 20),
                   child: const Text(
                     'Новая идея!',
                     style: TextStyle(
@@ -27,16 +29,32 @@ class First_screen extends StatelessWidget {
                         fontFamily: 'Some'),
                   )
                 ),
+                //Stack(children:[
                 Container(
-                  padding: const EdgeInsets.only(left: 40, right: 40),
-                  child: Image.asset("assets/images/8.jpg", fit: BoxFit.cover),
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.only(left: 50, right: 50),
+                    child:
+                    TextButton(
+                        onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));},
+                        child: AspectRatio(
+                            aspectRatio: 1 / 1,
+                            child: Container(
+                                decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  alignment: FractionalOffset.topCenter,
+                                  image: AssetImage("assets/images/1.jpg"))
+                                )
+                            )
+                        )
+                    )
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                        padding: const EdgeInsets.only(left: 30, right: 150),
-                        child:IconButton(
+                        padding: const EdgeInsets.only(left: 50, top: 12),
+                        child: IconButton(
                           onPressed: () {},
                           icon: const Icon(
                             Icons.star_border,
@@ -45,19 +63,23 @@ class First_screen extends StatelessWidget {
                         )
                     ),
                     Container(
-                        padding: const EdgeInsets.only(left: 30, top: 12, right: 40),
+                        padding: const EdgeInsets.only(top: 12, right: 50),
                         child: const Text(
-                            'author: @arishka_endy'
+                            'author: @arishka_endy',
+                            style: TextStyle(fontFamily: 'Some')
                         )
                     )
                 ]),
                 Container(
-                  padding: const EdgeInsets.only(top: 30),
+                  alignment: Alignment.bottomCenter,
+                  padding: const EdgeInsets.only(top: 10),
                   child: OutlinedButton(
-                    onPressed: (){},
+                    onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen()));},
+                    //настройки отображаются поверх первого экрана
+                    style: OutlinedButton.styleFrom(side: const BorderSide(color: Color(0xFF53648D), width: 2)),
                     child: const Text('Дополнительные настройки',
                       style: TextStyle(fontSize: 22,
-                        color: Color(0xFF505770),
+                        color: Color(0xFF53648D),
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.none,
                         fontFamily: 'Some'),),
