@@ -7,4 +7,4 @@ class MyTab {
   const MyTab({required this.name, required this.icon});
 }
 
-enum TabItem { IDEA, NOTES, NOTE }
+enum TabItem { IDEA, SETTINGS, VIEW, NOTES, NOTE, FAVORITES }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shoot_it/files/pages/favorites_screen.dart';
 import 'package:shoot_it/files/pages/settings_screen.dart';
 import 'package:shoot_it/files/pages/view_screen.dart';
 
@@ -73,7 +74,10 @@ class First_screen extends StatelessWidget {
                 Container(
                   alignment: Alignment.bottomCenter,
                   padding: const EdgeInsets.only(top: 10),
-                  child: OutlinedButton(
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                    OutlinedButton(
                     onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen()));},
                     //настройки отображаются поверх первого экрана
                     style: OutlinedButton.styleFrom(side: const BorderSide(color: Color(0xFF53648D), width: 2)),
@@ -84,6 +88,15 @@ class First_screen extends StatelessWidget {
                         decoration: TextDecoration.none,
                         fontFamily: 'Some'),),
                   ),
+                    IconButton(
+                        onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoritesScreen()));},
+                        icon: const Icon(
+                          Icons.star,
+                          color: Colors.white,
+                          size: 30,
+                        )
+                    ),
+                  ])
                 )
               ],
             )

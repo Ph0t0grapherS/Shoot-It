@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+//import 'package:shoot_it/files/pages/favorites_screen.dart';
 import 'package:shoot_it/models/tab.dart';
 import 'package:shoot_it/models/navigator_screen.dart';
-//import 'package:shoot_it/models/menu_navigation.dart';
 
 class ActiveScreen extends StatefulWidget {
   const ActiveScreen({Key? key}) : super(key: key);
@@ -13,32 +13,20 @@ class ActiveScreen extends StatefulWidget {
 
 class _ActiveScreenState extends State<ActiveScreen> {
 
-  /*late CustomPopupMenu _selectedChoices = choices[0];
-
-  void _select(CustomPopupMenu choice) {
-    setState(() {
-      _selectedChoices = choice;
-    });
-  }*/
-
   final _navigatorKeys = {
-    TabItem.IDIA: GlobalKey<NavigatorState>(),
+    TabItem.IDEA: GlobalKey<NavigatorState>(),
+    TabItem.SETTINGS: GlobalKey<NavigatorState>(),
+    TabItem.VIEW: GlobalKey<NavigatorState>(),
     TabItem.NOTES: GlobalKey<NavigatorState>(),
     TabItem.NOTE: GlobalKey<NavigatorState>(),
+    TabItem.FAVORITES: GlobalKey<NavigatorState>(),
   };
 
-  /*List choices = [
-    CustomPopupMenu(title: 'Home', icon: Icons.home),
-    CustomPopupMenu(title: 'Bookmarks', icon: Icons.bookmark),
-    CustomPopupMenu(title: 'Settings', icon: Icons.settings),
-  ];*/
-
-  var _currentTab = TabItem.IDIA;
+  var _currentTab = TabItem.IDEA;
 
   void _selectTab(TabItem tabItem) {
     setState(() => _currentTab = tabItem);
   }
-
 
   Widget _buildOffstageNavigator(TabItem tabItem) {
     return Offstage(
@@ -50,73 +38,29 @@ class _ActiveScreenState extends State<ActiveScreen> {
     );
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return WillPopScope(
-  //     onWillPop: () async {
-  //       if (_currentTab != TabItem.IDEA) {
-  //         if (_currentTab != TabItem.NOTES) {
-  //             _selectTab(TabItem.NOTE);
-  //           } else {
-  //             _selectTab(TabItem.NOTES);
-  //           }
-  //         return false;}
-  //         else {
-  //         return true;
-  //       }
-  //     },
-  //     child: Scaffold(
-  //       appBar: AppBar(
-  //           backgroundColor: Colors.blueGrey.shade900,
-  //           shadowColor: const Color(0x0013143E),
-  //           title: const Text(
-  //               'SHOOT IT',
-  //               style: TextStyle(fontSize: 36,
-  //                   color: Color(0xFF505770),
-  //                   letterSpacing: 3,
-  //                   fontWeight: FontWeight.w800, fontFamily: 'CantoraOne')
-  //           ),
-  //           actions: [
-  //             Container(
-  //                 padding: const EdgeInsets.only(right: 30),
-  //                 child: IconButton(
-  //                 onPressed: () {},
-  //                 icon: const Icon(
-  //                     Icons.menu_rounded,
-  //                     color: Color(0xFFe9edf5),
-  //                     size: 42)
-  //             )
-  //             )
-  //             /*PopupMenuButton(
-  //               elevation: 3.2,
-  //               initialValue: choices[1],
-  //               onCanceled: () {}
-  //             )*/
-  //           ]),
-  //   //body: bodyWidget(),
-
-  //       body: Stack(children: <Widget>[
-  //         _buildOffstageNavigator(TabItem.IDIA),
-  //         _buildOffstageNavigator(TabItem.NOTES),
-  //         _buildOffstageNavigator(TabItem.NOTE),
-  //       ]),
-  //   )
-  //   );
-  // }
-
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if (_currentTab != TabItem.IDIA) {
-          if (_currentTab != TabItem.NOTES) {
-              _selectTab(TabItem.NOTE);
+      if (_currentTab != TabItem.IDEA) {
+        if (_currentTab != TabItem.SETTINGS) {
+          if (_currentTab != TabItem.VIEW) {
+            if (_currentTab != TabItem.FAVORITES) {
+              if (_currentTab == TabItem.NOTES) {
+                _selectTab(TabItem.NOTE);
+              }
             } else {
-              _selectTab(TabItem.NOTES);
+              _selectTab(TabItem.FAVORITES);
             }
-          return false;}
-          else {
+          } else {
+            _selectTab(TabItem.VIEW);
+          }
+        } else {
+          _selectTab(TabItem.SETTINGS);
+        }
+        return false;
+      } else {
           return true;
         }
       },
@@ -133,9 +77,12 @@ class _ActiveScreenState extends State<ActiveScreen> {
             ),
         ),
         body: Stack(children: <Widget>[
-          _buildOffstageNavigator(TabItem.IDIA),
+          _buildOffstageNavigator(TabItem.IDEA),
+          _buildOffstageNavigator(TabItem.SETTINGS),
+          _buildOffstageNavigator(TabItem.VIEW),
           _buildOffstageNavigator(TabItem.NOTES),
           _buildOffstageNavigator(TabItem.NOTE),
+          _buildOffstageNavigator(TabItem.FAVORITES),
         ]),
        
        drawer: Drawer(
@@ -151,7 +98,7 @@ class _ActiveScreenState extends State<ActiveScreen> {
               ), 
               ListTile(
                 title: const Text(
-                  "Home page",
+                  "Новая идея",
                   style: TextStyle(
                         fontSize: 22,
                         color: Color(0xFF505770),
@@ -159,12 +106,12 @@ class _ActiveScreenState extends State<ActiveScreen> {
                 ),
                 leading: const Icon(Icons.home, color: Color(0xFF505770),),
                 onTap: (){
-                  
-                }
+                  Navigator.pop(context);
+                  _currentTab = TabItem.IDEA;}
               ),
               ListTile(
                 title: const Text(
-                  "Bookmarks",
+                  "1",
                   style: TextStyle(
                         fontSize: 22,
                         color: Color(0xFF505770),
@@ -172,30 +119,34 @@ class _ActiveScreenState extends State<ActiveScreen> {
                 ),
                 leading: const Icon(Icons.bookmark, color: Color(0xFF505770),),
                 onTap: (){
-
-                }
+                  Navigator.pop(context);
+                  _currentTab = TabItem.SETTINGS;}
               ),
               ListTile(
                 title: const Text(
-                  "Favorites",
+                  "Избранное",
                   style: TextStyle(
                         fontSize: 22,
                         color: Color(0xFF505770),
                       ),
                 ),
                 leading: const Icon(Icons.star, color: Color(0xFF505770),),
-                onTap: (){}
+                onTap: (){
+                  Navigator.pop(context);
+                  _currentTab = TabItem.FAVORITES;}
               ),
               ListTile(
                 title: const Text(
-                  "Settings",
+                  "2",
                   style: TextStyle(
                         fontSize: 22,
                         color: Color(0xFF505770),
                       ),
                 ),
                 leading: const Icon(Icons.settings, color: Color(0xFF505770),),
-                onTap: (){}
+                onTap: (){
+                  Navigator.pop(context);
+                }
               )
             ],
           ),
@@ -205,7 +156,3 @@ class _ActiveScreenState extends State<ActiveScreen> {
     );
   }
 }
-
-  /*bodyWidget() {
-    return SelectedOption(choice: _selectedChoices);
-  }*/
