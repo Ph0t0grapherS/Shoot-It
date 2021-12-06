@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shoot_it/models/menu_navigation.dart';
 //import 'package:shoot_it/files/pages/favorites_screen.dart';
 import 'package:shoot_it/models/tab.dart';
+import 'package:shoot_it/models/navigator_screen.dart';
 import 'package:shoot_it/models/navigator_screen.dart';
 
 class ActiveScreen extends StatefulWidget {
@@ -38,32 +40,33 @@ class _ActiveScreenState extends State<ActiveScreen> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+      
       onWillPop: () async {
-      if (_currentTab != TabItem.IDEA) {
-        if (_currentTab != TabItem.SETTINGS) {
-          if (_currentTab != TabItem.VIEW) {
-            if (_currentTab != TabItem.FAVORITES) {
-              if (_currentTab == TabItem.NOTES) {
-                _selectTab(TabItem.NOTE);
-              }
-            } else {
-              _selectTab(TabItem.FAVORITES);
-            }
-          } else {
-            _selectTab(TabItem.VIEW);
+        if (_currentTab != TabItem.IDEA) {
+          if (_currentTab == TabItem.SETTINGS) {
+            _selectTab(TabItem.IDEA);
           }
+          if (_currentTab == TabItem.VIEW) {
+            _selectTab(TabItem.IDEA);
+          }
+          if (_currentTab != TabItem.FAVORITES) {
+            _selectTab(TabItem.IDEA);
+          }
+          if (_currentTab == TabItem.NOTES) {
+            _selectTab(TabItem.IDEA);
+          }
+          if (_currentTab == TabItem.NOTE) {
+            _selectTab(TabItem.NOTES);
+          }
+          return false;
         } else {
-          _selectTab(TabItem.SETTINGS);
-        }
-        return false;
-      } else {
           return true;
         }
       },
+
       child: Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.blueGrey.shade900,
@@ -76,82 +79,20 @@ class _ActiveScreenState extends State<ActiveScreen> {
                     fontWeight: FontWeight.w800, fontFamily: 'CantoraOne')
             ),
         ),
+        
         body: Stack(children: <Widget>[
           _buildOffstageNavigator(TabItem.IDEA),
-          _buildOffstageNavigator(TabItem.SETTINGS),
           _buildOffstageNavigator(TabItem.VIEW),
+          _buildOffstageNavigator(TabItem.SETTINGS),
+          _buildOffstageNavigator(TabItem.FAVORITES),
           _buildOffstageNavigator(TabItem.NOTES),
           _buildOffstageNavigator(TabItem.NOTE),
-          _buildOffstageNavigator(TabItem.FAVORITES),
         ]),
-       
-       drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              ListTile(
-                title: const Text(""),
-                leading: const Icon(Icons.arrow_back, color: Color(0xFF505770),),
-                onTap: (){
-                  Navigator.pop(context);
-                }
-              ), 
-              ListTile(
-                title: const Text(
-                  "Новая идея",
-                  style: TextStyle(
-                        fontSize: 22,
-                        color: Color(0xFF505770),
-                      ),
-                ),
-                leading: const Icon(Icons.home, color: Color(0xFF505770),),
-                onTap: (){
-                  Navigator.pop(context);
-                  _currentTab = TabItem.IDEA;}
-              ),
-              ListTile(
-                title: const Text(
-                  "1",
-                  style: TextStyle(
-                        fontSize: 22,
-                        color: Color(0xFF505770),
-                      ),
-                ),
-                leading: const Icon(Icons.bookmark, color: Color(0xFF505770),),
-                onTap: (){
-                  Navigator.pop(context);
-                  _currentTab = TabItem.SETTINGS;}
-              ),
-              ListTile(
-                title: const Text(
-                  "Избранное",
-                  style: TextStyle(
-                        fontSize: 22,
-                        color: Color(0xFF505770),
-                      ),
-                ),
-                leading: const Icon(Icons.star, color: Color(0xFF505770),),
-                onTap: (){
-                  Navigator.pop(context);
-                  _currentTab = TabItem.FAVORITES;}
-              ),
-              ListTile(
-                title: const Text(
-                  "2",
-                  style: TextStyle(
-                        fontSize: 22,
-                        color: Color(0xFF505770),
-                      ),
-                ),
-                leading: const Icon(Icons.settings, color: Color(0xFF505770),),
-                onTap: (){
-                  Navigator.pop(context);
-                }
-              )
-            ],
-          ),
-          
-        ), 
+        
+        bottomNavigationBar: MenuButton(
+                    currentTab: _currentTab,
+                    onSelectTab: _selectTab,
+        )
       ),    
     );
   }

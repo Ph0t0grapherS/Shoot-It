@@ -1,3 +1,67 @@
+import 'package:flutter/material.dart';
+import '../models/tab.dart';
+import 'package:shoot_it/files/active_screen.dart';
+
+const Map<TabItem, MyTab> tabs = {
+  TabItem.IDEA : const MyTab(name: "Idea", icon: Icons.layers, color: Colors.grey),
+  TabItem.SETTINGS : const MyTab(name: "Settings", icon: Icons.settings, color: Colors.grey),
+  TabItem.NOTES: const MyTab(name: "Notes", icon: Icons.edit, color: Colors.grey),
+  TabItem.FAVORITES: const MyTab(name: "Favorities", icon: Icons.star, color: Colors.grey)
+};
+
+class MenuButton extends StatelessWidget {
+
+  const MenuButton({required this.currentTab, required this.onSelectTab});
+
+  final TabItem currentTab;
+  final ValueChanged<TabItem> onSelectTab;
+
+  @override
+  Widget build(BuildContext context) {
+    
+    // return PopupMenuButton(
+    //     itemBuilder: (context) {
+    //       return Map<TabItem, MyTab>;
+    //     }
+    // );
+
+    return BottomNavigationBar(
+        selectedItemColor: _colorTabMatching(currentTab),
+        selectedFontSize: 13,
+        unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: currentTab.index,
+        // пункты меню
+        items: [
+          _buildItem(TabItem.IDEA),
+          _buildItem(TabItem.NOTES),
+          _buildItem(TabItem.FAVORITES),
+        ],
+        onTap: (index) => onSelectTab(
+            TabItem.values[index]
+        )
+    );
+  }
+
+  BottomNavigationBarItem _buildItem(TabItem item) {
+    return BottomNavigationBarItem(
+        icon: Icon(
+          _iconTabMatching(item),
+          color: _colorTabMatching(item),
+        ),
+        label: tabs[item]!.name,
+    );
+  }
+
+  IconData _iconTabMatching(TabItem item) => tabs[item]!.icon;
+
+  // получаем цвет элемента
+  Color _colorTabMatching(TabItem item) {
+    return currentTab == item ? tabs[item]!.color : Colors.blue;
+  }
+
+}
+
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 // import 'package:shoot_it/files/active_screen.dart';

@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 //import 'pages/first_screen.dart';
-
 // Всплывающее меню:
 class Menu extends StatelessWidget {
   const Menu({Key? key}) : super(key: key); */
