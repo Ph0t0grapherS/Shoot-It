@@ -19,174 +19,76 @@ class FavoritesScreen extends StatelessWidget {
                 Column(
                     //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                        padding: const EdgeInsets.all(3),
-                        width: 220,
-                        height: 220,
-                        child: TextButton(
-                            onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));},
-                            child: AspectRatio(
-                                aspectRatio: 1 / 1,
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    alignment: FractionalOffset.topCenter,
-                                    image: AssetImage("assets/images/1.jpg")
-                                    )
-                                  )
-                                )
-                            )
-                        )
+                    picInFav(id: 1, onClicked: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
+                    },
                     ),
-                    Container(
-                        padding: const EdgeInsets.all(3),
-                        width: 220,
-                        height: 220,
-                        child: TextButton(
-                            onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));},
-                            child: AspectRatio(
-                                aspectRatio: 1 / 1,
-                                child: Container(
-                                    decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            alignment: FractionalOffset.topCenter,
-                                            image: AssetImage("assets/images/2.jpg")
-                                        )
-                                    )
-                                )
-                            )
-                        )
+                    picInFav(id: 2, onClicked: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
+                    },
                     ),
-                    Container(
-                        padding: const EdgeInsets.all(3),
-                        width: 220,
-                        height: 220,
-                        child: TextButton(
-                            onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));},
-                            child: AspectRatio(
-                                aspectRatio: 1 / 1,
-                                child: Container(
-                                    decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            alignment: FractionalOffset.topCenter,
-                                            image: AssetImage("assets/images/3.jpg")
-                                        )
-                                    )
-                                )
-                            )
-                        )
+                    picInFav(id: 3, onClicked: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
+                    },
                     ),
-                    Container(
-                        padding: const EdgeInsets.all(3),
-                        width: 220,
-                        height: 220,
-                        child: TextButton(
-                            onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));},
-                            child: AspectRatio(
-                                aspectRatio: 1 / 1,
-                                child: Container(
-                                    decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            alignment: FractionalOffset.topCenter,
-                                            image: AssetImage("assets/images/4.jpg")
-                                        )
-                                    )
-                                )
-                            )
-                        )
+                    picInFav(id: 4, onClicked: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
+                    },
                     ),
                 ]),
                 //const Spacer(),
                 Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
-                          padding: const EdgeInsets.all(3),
-                          width: 220,
-                          height: 220,
-                          child: TextButton(
-                              onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));},
-                              child: AspectRatio(
-                                  aspectRatio: 1 / 1,
-                                  child: Container(
-                                      decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              alignment: FractionalOffset.topCenter,
-                                              image: AssetImage("assets/images/5.jpg")
-                                          )
-                                      )
-                                  )
-                              )
-                          )
+                      picInFav(id: 5, onClicked: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
+                      },
                       ),
-                      Container(
-                          padding: const EdgeInsets.all(3),
-                          width: 220,
-                          height: 220,
-                          child: TextButton(
-                              onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));},
-                              child: AspectRatio(
-                                  aspectRatio: 1 / 1,
-                                  child: Container(
-                                      decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              alignment: FractionalOffset.topCenter,
-                                              image: AssetImage("assets/images/6.jpg")
-                                          )
-                                      )
-                                  )
-                              )
-                          )
+                      picInFav(id: 6, onClicked: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
+                      },
                       ),
-                      Container(
-                          padding: const EdgeInsets.all(3),
-                          width: 220,
-                          height: 220,
-                          child: TextButton(
-                              onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));},
-                              child: AspectRatio(
-                                  aspectRatio: 1 / 1,
-                                  child: Container(
-                                      decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              alignment: FractionalOffset.topCenter,
-                                              image: AssetImage("assets/images/7.jpg")
-                                          )
-                                      )
-                                  )
-                              )
-                          )
+                      picInFav(id: 7, onClicked: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
+                      },
                       ),
-                      Container(
-                          padding: const EdgeInsets.all(3),
-                          width: 220,
-                          height: 220,
-                          child: TextButton(
-                              onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));},
-                              child: AspectRatio(
-                                  aspectRatio: 1 / 1,
-                                  child: Container(
-                                      decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              alignment: FractionalOffset.topCenter,
-                                              image: AssetImage("assets/images/8.jpg")
-                                          )
-                                      )
-                                  )
-                              )
-                          )
+                      picInFav(id: 8, onClicked: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
+                      },
                       ),
+                      picInFav(id: 9, onClicked: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
+                        },
+                      )
                     ])
             ])
         )
+    );
+  }
+  Widget picInFav({
+    required int id,
+
+    VoidCallback? onClicked,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(3),
+      width: 220,
+      height: 220,
+      child: TextButton(
+        onPressed: onClicked,
+        child: AspectRatio(
+          aspectRatio: 1 / 1,
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                alignment: FractionalOffset.topCenter,
+                image: AssetImage("assets/images/${id}.jpg")
+              ),
+            )
+          )
+          )
+      )
     );
   }
 }
