@@ -12,9 +12,6 @@ class SettingsScreen extends StatefulWidget{
 
 class _SettingsState extends State<SettingsScreen>{
 
-//class SettingScreen extends StatelessWidget {
-  //const Settings({Key? key}) : super(key: key);
-
   //цвета для кнопок выбора
   Color _buttonColor1 = const Color(0xFFe9edf5);
   Color _buttonColor2 = const Color(0xFFe9edf5);

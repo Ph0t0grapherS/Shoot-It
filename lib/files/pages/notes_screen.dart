@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class Notes extends StatelessWidget {
-  const Notes ({Key? key}) : super(key: key);
+class Notes extends StatefulWidget {
+  const Notes({Key? key}) : super(key: key);
 
+  @override
+  State<Notes> createState() => _Notes();
+}
+
+class _Notes extends State<Notes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

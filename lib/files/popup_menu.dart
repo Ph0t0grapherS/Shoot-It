@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shoot_it/files/pages/favorites_screen.dart';
 import 'package:shoot_it/files/pages/first_screen.dart';
+import 'package:shoot_it/files/pages/notes_screen.dart';
 
-class MenuWidget extends StatelessWidget {
+class MenuButton extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal:20);
 
   @override
@@ -13,12 +15,6 @@ class MenuWidget extends StatelessWidget {
           padding: EdgeInsets.zero,
             children: <Widget>[
               const SizedBox(height: 48),
-              // MenuItem(
-              //   text: '',
-              //   icon: Icons.arrow_back,
-              //   onClicked: () => selectedItem(context, 0),
-              // ),
-
               MenuItem(
                 text: 'Новая идея',
                 icon: Icons.home,
@@ -37,17 +33,13 @@ class MenuWidget extends StatelessWidget {
                 // onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const First_screen()));
                 onClicked: () => selectedItem(context, 3),
               ),
-              MenuItem(
-                text: 'Справочник',
-                icon: Icons.bookmark,
-                onClicked: () => selectedItem(context, 4),
-              ),
             ],
         )
       ),
     );
   }
 
+    // ignore: non_constant_identifier_names
     Widget MenuItem({
       required String text,
       required IconData icon,
@@ -63,44 +55,16 @@ class MenuWidget extends StatelessWidget {
 
   void selectedItem(BuildContext context, int i) {
     switch (i){
-      case 3:
+      case 1:
         Navigator.of(context).push(MaterialPageRoute(builder: (context) => const First_screen(),));
+      break;
+      case 2:
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Notes(),));
+      break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FavoritesScreen(),));
       break;
     }
   }
 }
 
-
-
-/*import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-//import 'pages/first_screen.dart';
-
-// Всплывающее меню:
-class Menu extends StatelessWidget {
-  const Menu({Key? key}) : super(key: key); */
-/*
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Container(
-            alignment: Alignment.topRight,
-            padding: const EdgeInsets.only(top: 18, right: 28),
-            color: const Color(0xFFe9edf5),
-            child: Column(
-                children: [
-                  Container(
-                    //alignment: Alignment.topLeft,
-                      padding: const EdgeInsets.only(left: 5, top: 5),
-                      child: ElevatedButton(
-                          onPressed: (){/*const First_screen()*/;},
-                          child: const Text("shoot-it")*/
-/*
-                      )
-                  )
-                ])
-        )
-    );
-  }
-}*/
