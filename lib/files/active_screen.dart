@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shoot_it/models/menu_navigation.dart';
+import 'package:shoot_it/files/pages/favorites_screen.dart';
+import 'package:shoot_it/files/pages/first_screen.dart';
 //import 'package:shoot_it/files/pages/favorites_screen.dart';
 import 'package:shoot_it/models/tab.dart';
 import 'package:shoot_it/models/navigator_screen.dart';
-import 'package:shoot_it/models/navigator_screen.dart';
+import 'package:shoot_it/files/popup_menu.dart';
 
 class ActiveScreen extends StatefulWidget {
   const ActiveScreen({Key? key}) : super(key: key);
@@ -40,33 +41,32 @@ class _ActiveScreenState extends State<ActiveScreen> {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      
       onWillPop: () async {
-        if (_currentTab != TabItem.IDEA) {
-          if (_currentTab == TabItem.SETTINGS) {
-            _selectTab(TabItem.IDEA);
+      if (_currentTab != TabItem.IDEA) {
+        if (_currentTab != TabItem.SETTINGS) {
+          if (_currentTab != TabItem.VIEW) {
+            if (_currentTab != TabItem.FAVORITES) {
+              if (_currentTab == TabItem.NOTES) {
+                _selectTab(TabItem.NOTE);
+              }
+            } else {
+              _selectTab(TabItem.FAVORITES);
+            }
+          } else {
+            _selectTab(TabItem.VIEW);
           }
-          if (_currentTab == TabItem.VIEW) {
-            _selectTab(TabItem.IDEA);
-          }
-          if (_currentTab != TabItem.FAVORITES) {
-            _selectTab(TabItem.IDEA);
-          }
-          if (_currentTab == TabItem.NOTES) {
-            _selectTab(TabItem.IDEA);
-          }
-          if (_currentTab == TabItem.NOTE) {
-            _selectTab(TabItem.NOTES);
-          }
-          return false;
         } else {
+          _selectTab(TabItem.SETTINGS);
+        }
+        return false;
+      } else {
           return true;
         }
       },
-
       child: Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.blueGrey.shade900,
@@ -79,20 +79,16 @@ class _ActiveScreenState extends State<ActiveScreen> {
                     fontWeight: FontWeight.w800, fontFamily: 'CantoraOne')
             ),
         ),
-        
         body: Stack(children: <Widget>[
           _buildOffstageNavigator(TabItem.IDEA),
-          _buildOffstageNavigator(TabItem.VIEW),
           _buildOffstageNavigator(TabItem.SETTINGS),
-          _buildOffstageNavigator(TabItem.FAVORITES),
+          _buildOffstageNavigator(TabItem.VIEW),
           _buildOffstageNavigator(TabItem.NOTES),
           _buildOffstageNavigator(TabItem.NOTE),
+          _buildOffstageNavigator(TabItem.FAVORITES),
         ]),
-        
-        bottomNavigationBar: MenuButton(
-                    currentTab: _currentTab,
-                    onSelectTab: _selectTab,
-        )
+       
+       drawer: MenuWidget(), 
       ),    
     );
   }

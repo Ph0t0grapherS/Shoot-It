@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shoot_it/files/pages/view_screen.dart';
-import 'package:shoot_it/files/pages/first_screen.dart';
 
 
 class FavoritesScreen extends StatelessWidget {
