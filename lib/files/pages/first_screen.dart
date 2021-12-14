@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:shoot_it/files/pages/favorites_screen.dart';
 import 'package:shoot_it/files/pages/settings_screen.dart';
 import 'package:shoot_it/files/pages/view_screen.dart';
 
 import '../popup_menu.dart';
 
-class First_screen extends StatefulWidget {
-  const First_screen({Key? key}) : super(key: key);
+class FirstScreen extends StatefulWidget {
+  const FirstScreen({Key? key}) : super(key: key);
 
   @override
-  State<First_screen> createState() => _First_screen();
+  State<FirstScreen> createState() => _FirstScreen();
 }
 
-class _First_screen extends State<First_screen> {
+class _FirstScreen extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +30,6 @@ class _First_screen extends State<First_screen> {
       ),
       body: Center(
           child: Container(
-              //alignment: Alignment.,
-              //padding: const EdgeInsets.only(left: 30, right: 30),
               color: const Color(0xff1d4663),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,8 +44,8 @@ class _First_screen extends State<First_screen> {
                             //fontWeight: FontWeight.bold,
                             decoration: TextDecoration.none,
                             fontFamily: 'Some'),
-                      )),
-                  //Stack(children:[
+                      )
+                  ),
                   Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.only(left: 50, right: 50),
@@ -67,7 +64,10 @@ class _First_screen extends State<First_screen> {
                                           fit: BoxFit.cover,
                                           alignment: FractionalOffset.topCenter,
                                           image: AssetImage(
-                                              "assets/images/1.jpg"))))))),
+                                              "assets/images/1.jpg"))))
+                          )
+                      )
+                  ),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -84,17 +84,10 @@ class _First_screen extends State<First_screen> {
                       ]),
                   Container(
                       alignment: Alignment.bottomCenter,
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            OutlinedButton(
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: OutlinedButton(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SettingsScreen()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen()));
                               },
                               //настройки отображаются поверх первого экрана
                               style: OutlinedButton.styleFrom(
@@ -109,23 +102,9 @@ class _First_screen extends State<First_screen> {
                                     decoration: TextDecoration.none,
                                     fontFamily: 'Some'),
                               ),
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const FavoritesScreen()));
-                                },
-                                icon: const Icon(
-                                  Icons.star,
-                                  color: Colors.white,
-                                  size: 30,
-                                )),
-                          ]))
-                ],
-              ))),
+                            ),)
+                ],)
+          )),
     );
   }
 }

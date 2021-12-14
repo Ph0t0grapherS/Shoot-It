@@ -56,7 +56,7 @@ class MenuButton extends StatelessWidget {
   void selectedItem(BuildContext context, int i) {
     switch (i){
       case 1:
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const First_screen(),));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FirstScreen(),));
       break;
       case 2:
         Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Notes(),));

@@ -18,24 +18,23 @@ class _FavoritesScreen extends State<FavoritesScreen> {
       appBar: AppBar(
         backgroundColor: Colors.blueGrey.shade900,
         shadowColor: const Color(0x0013143E),
-        title: const Text('SHOOT IT',
+        title: const Text('Избранное',
             style: TextStyle(
                 fontSize: 36,
                 color: Color(0xFF505770),
                 letterSpacing: 3,
-                fontWeight: FontWeight.w800,
-                fontFamily: 'CantoraOne')),
+                fontWeight: FontWeight.w800, fontFamily: 'Some')),
       ),
       body: SingleChildScrollView(
           child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.only(left: 20, right: 20),
+              //alignment: Alignment.center,
+              padding: const EdgeInsets.only(left: 4, right: 4),
               color: const Color(0xff1d4663),
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
-                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //
                         children: [
                           picInFav(id: 1, onClicked: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
@@ -50,9 +49,8 @@ class _FavoritesScreen extends State<FavoritesScreen> {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
                           },),
                         ]),
-                    //const Spacer(),
                     Column(
-                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           picInFav(id: 5, onClicked: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));

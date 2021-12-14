@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:shoot_it/files/pages/settings_screen.dart';
 
 import '../popup_menu.dart';
 
@@ -19,13 +18,13 @@ class _ViewScreen extends State<ViewScreen> {
       appBar: AppBar(
         backgroundColor: Colors.blueGrey.shade900,
         shadowColor: const Color(0x0013143E),
-        title: const Text('SHOOT IT',
+        title: const Text('Просмотр картинки',
             style: TextStyle(
                 fontSize: 36,
                 color: Color(0xFF505770),
                 letterSpacing: 3,
                 fontWeight: FontWeight.w800,
-                fontFamily: 'CantoraOne')),
+                fontFamily: 'Some')),
       ),
       body: Center(
           child: Container(
