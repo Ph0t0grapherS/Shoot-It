@@ -1,10 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'package:shoot_it/files/pages/view_screen.dart';
-import 'package:shoot_it/files/popup_menu.dart';
+import 'package:shoot_it/pages/view_screen.dart';
+import 'package:shoot_it/navigation/popup_menu.dart';
 
 class FavoritesScreen extends StatefulWidget {
-  const FavoritesScreen({Key? key}) : super(key: key);
+  const FavoritesScreen({key}) : super(key: key);
 
   @override
   State<FavoritesScreen> createState() => _FavoritesScreen();
@@ -73,9 +72,9 @@ class _FavoritesScreen extends State<FavoritesScreen> {
   }
 
   Widget picInFav({
-    required int id,
+    int id,
 
-    VoidCallback? onClicked,
+    VoidCallback onClicked,
   }) {
     return Container(
       padding: const EdgeInsets.all(3),

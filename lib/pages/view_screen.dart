@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../popup_menu.dart';
+import '../../navigation/popup_menu.dart';
 
 class ViewScreen extends StatefulWidget {
-  const ViewScreen({Key? key}) : super(key: key);
+  const ViewScreen({key}) : super(key: key);
 
   @override
   State<ViewScreen> createState() => _ViewScreen();

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shoot_it/files/pages/favorites_screen.dart';
-import 'package:shoot_it/files/pages/first_screen.dart';
-import 'package:shoot_it/files/pages/notes_screen.dart';
+import 'package:shoot_it/pages/favorites_screen.dart';
+import 'package:shoot_it/pages/first_screen.dart';
+import 'package:shoot_it/pages/notes_screen.dart';
 
 class MenuButton extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal:20);
@@ -30,7 +30,6 @@ class MenuButton extends StatelessWidget {
               MenuItem(
                 text: 'Избранное',
                 icon: Icons.star,
-                // onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const First_screen()));
                 onClicked: () => selectedItem(context, 3),
               ),
             ],
@@ -41,9 +40,9 @@ class MenuButton extends StatelessWidget {
 
     // ignore: non_constant_identifier_names
     Widget MenuItem({
-      required String text,
-      required IconData icon,
-      VoidCallback? onClicked,
+      String text,
+      IconData icon,
+      VoidCallback onClicked,
     }) {
       return ListTile(
         leading: Icon(icon),
@@ -56,13 +55,13 @@ class MenuButton extends StatelessWidget {
   void selectedItem(BuildContext context, int i) {
     switch (i){
       case 1:
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FirstScreen(),));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FirstScreen()));
       break;
       case 2:
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Notes(),));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Notes()));
       break;
       case 3:
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FavoritesScreen(),));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FavoritesScreen()));
       break;
     }
   }

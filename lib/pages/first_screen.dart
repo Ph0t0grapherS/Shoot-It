@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:shoot_it/files/pages/settings_screen.dart';
-import 'package:shoot_it/files/pages/view_screen.dart';
+import 'package:shoot_it/pages/settings_screen.dart';
+import 'package:shoot_it/pages/view_screen.dart';
 
-import '../popup_menu.dart';
+import '../../navigation/popup_menu.dart';
 
 class FirstScreen extends StatefulWidget {
-  const FirstScreen({Key? key}) : super(key: key);
+  const FirstScreen({key}) : super(key: key);
 
   @override
   State<FirstScreen> createState() => _FirstScreen();

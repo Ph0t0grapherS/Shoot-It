@@ -1,18 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shoot_it/files/pages/first_screen.dart';
-import 'package:shoot_it/models/model.dart';
-import 'package:shoot_it/db/db.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shoot_it/pages/first_screen.dart';
+import 'package:shoot_it/models/note.dart';
+import 'package:shoot_it/client/hive_names.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
 
-  await DB.init();
-  runApp(const MyApp());
+  await Hive.initFlutter();
+  Hive.registerAdapter(NoteAdapter());
+  await Hive.openBox<Note>(HiveBoxes.note);
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void dispose() async {
+    Hive.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
