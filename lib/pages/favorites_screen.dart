@@ -1,3 +1,8 @@
+import 'dart:io';
+import 'dart:async';
+//import 'dart:math';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shoot_it/pages/view_screen.dart';
 import 'package:shoot_it/navigation/popup_menu.dart';
@@ -10,6 +15,34 @@ class FavoritesScreen extends StatefulWidget {
 }
 
 class _FavoritesScreen extends State<FavoritesScreen> {
+
+  File file;
+  String id;
+  int k;
+  bool list = false;
+  List<Widget> images = [];
+
+  //@override
+  void initState() {
+    print('вход2');
+    super.initState();
+    getId();
+  }
+
+  Future <void> getId() async {
+    print('вход');
+    if (list != true){
+    id = await rootBundle.loadString('files/favorites.txt');
+    getList();}
+    else {print('найдено');
+    print('чтение');
+    k = id.length;
+    getList();
+    print('выход');}
+    //return id;
+    //print('возвращение');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,55 +57,19 @@ class _FavoritesScreen extends State<FavoritesScreen> {
                 letterSpacing: 3,
                 fontWeight: FontWeight.w800, fontFamily: 'Some')),
       ),
-      body: SingleChildScrollView(
-          child: Container(
-              //alignment: Alignment.center,
-              padding: const EdgeInsets.only(left: 4, right: 4),
+      /*body: SingleChildScrollView(
+          child: Container (
               color: const Color(0xff1d4663),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                        //
-                        children: [
-                          picInFav(id: 1, onClicked: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
-                          },),
-                          picInFav(id: 2, onClicked: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
-                          },),
-                          picInFav(id: 3, onClicked: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
-                          },),
-                          picInFav(id: 4, onClicked: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
-                          },),
-                        ]),
-                    Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          picInFav(id: 5, onClicked: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
-                          },),
-                          picInFav(id: 6, onClicked: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
-                          },),
-                          picInFav(id: 7, onClicked: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
-                          },),
-                          picInFav(id: 8, onClicked: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
-                          },),
-                          picInFav(id: 9, onClicked: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewScreen()));
-                          },)
-                        ])
-                  ]))),
+              child:Column(
+                children: images,
+              )
+          )
+      )*/
     );
   }
 
   Widget picInFav({
-    int id,
+    String id,
 
     VoidCallback onClicked,
   }) {
@@ -84,17 +81,45 @@ class _FavoritesScreen extends State<FavoritesScreen> {
         onPressed: onClicked,
         child: AspectRatio(
           aspectRatio: 1 / 1,
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                alignment: FractionalOffset.topCenter,
-                image: AssetImage("assets/images/${id}.jpg")
-              ),
-            )
-          )
-          )
+          child: Image.file(
+              File('assets/images/${id}.jpg'))
+        ),
       )
     );
+  }
+
+  List<Widget> getList() {
+    //List<Widget> images = [];
+
+    print('вход3');
+    print(k);
+
+    if (id == null) {
+      list = false;
+      initState();
+    }
+    else if (k == null){
+      print(k);
+      list = true;
+      getId();
+    }
+    else {
+      print('вход4');
+      for (int i = 0; i < k-1; i++) {
+        print(i);
+        if (i % 2 == 0 ){
+          print(i);
+          images.add(
+              picInFav(id: id[i] + id[i + 1], onClicked: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => ViewScreen(id: id[i] + id[i + 1])));
+              },)
+          );
+        };
+      };
+      Column(
+          children: images);
+    }
+    //return images;
   }
 }

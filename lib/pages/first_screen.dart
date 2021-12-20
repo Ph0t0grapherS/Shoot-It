@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shoot_it/pages/settings_screen.dart';
 import 'package:shoot_it/pages/view_screen.dart';
-
+//import 'dart:io';
+//import 'package:path_provider/path_provider.dart';
+import 'dart:math';
 import '../../navigation/popup_menu.dart';
+
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({key}) : super(key: key);
@@ -13,6 +16,36 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreen extends State<FirstScreen> {
+
+
+
+  //String imagePath;
+  var rnd;
+  int r;
+  int imid;
+  String tid;
+
+  int rand() {
+    print('entire');
+    rnd = new Random();
+    //imagePath = 'assets/images/i${r}.jpg';
+    r = rnd.nextInt(14);
+    //print (r);
+    return r;
+  }
+
+  String id(){
+    if (set != true){
+      imid = rand();
+      tid = 'i${imid}';
+      set = false;
+      return tid;
+    } else{
+      tid = newId;
+      return tid;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,22 +83,21 @@ class _FirstScreen extends State<FirstScreen> {
                       alignment: Alignment.center,
                       padding: const EdgeInsets.only(left: 50, right: 50),
                       child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const ViewScreen()));
-                          },
                           child: AspectRatio(
                               aspectRatio: 1 / 1,
                               child: Container(
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                       image: DecorationImage(
                                           fit: BoxFit.cover,
                                           alignment: FractionalOffset.topCenter,
-                                          image: AssetImage(
-                                              "assets/images/1.jpg"))))
-                          )
+                                          image: AssetImage('images/${id()}.jpg')
+                                      )
+                                  )
+                              )
+                          ),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ViewScreen(id: '${tid}')));
+                            },
                       )
                   ),
                   Row(
@@ -74,7 +106,7 @@ class _FirstScreen extends State<FirstScreen> {
                         Container(
                             padding: const EdgeInsets.only(left: 50, top: 12),
                             child: IconButton(
-                                onPressed: () {},
+                                onPressed: () {const Icon(Icons.star, color: Color(0xFFe9edf5));},
                                 icon: const Icon(Icons.star_border,
                                     color: Color(0xFFe9edf5), size: 42))),
                         Container(

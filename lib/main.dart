@@ -6,6 +6,7 @@ import 'package:shoot_it/pages/first_screen.dart';
 import 'package:shoot_it/models/note.dart';
 import 'package:shoot_it/client/hive_names.dart';
 
+
 void main() async {
 
   await Hive.initFlutter();
@@ -36,7 +37,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         textTheme: Theme.of(context)
             .textTheme
-            .apply(bodyColor: const Color(0xFFe9edf5)),
+            .apply(bodyColor: const Color(0xff1d4663)),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: const FirstScreen(),

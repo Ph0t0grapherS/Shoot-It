@@ -99,8 +99,7 @@ class _Notes extends State<Notes> {
         ),
       ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => AddNote())),
+          onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddNote())),
           tooltip: 'Add note',
           child: Icon(Icons.add),
         ),

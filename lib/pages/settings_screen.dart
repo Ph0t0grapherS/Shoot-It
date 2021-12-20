@@ -1,7 +1,19 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shoot_it/pages/first_screen.dart';
 import 'package:shoot_it/navigation/popup_menu.dart';
+
+List images = ['портрет', 'творческая', 'стрит', 'fashion', 'город', 'город', 'стрит',
+  'портрет', 'портрет', 'fashion', 'портрет', 'fashion', 'fashion', 'творческая', 'анимал'];
+
+List collages = ['портрет', 'город', 'fashion', 'стрит', 'творческая', 'портрет', 'творческая',
+  'анимал', 'стрит', 'портрет', 'fashion', 'fashion', 'творческая', 'творческая', 'анимал'];
+
+
+bool set;
+String newId;
 
 
 class SettingsScreen extends StatefulWidget{
@@ -13,8 +25,65 @@ class SettingsScreen extends StatefulWidget{
 
 class _SettingsState extends State<SettingsScreen>{
 
-//class SettingScreen extends StatelessWidget {
-  //const Settings({Key? key}) : super(key: key);
+  bool photo;
+  bool coll;
+  String type;
+  var rnd;
+  int r;
+  int imid;
+  int promid;
+  String promids;
+  bool find;
+
+  int rand() {
+    print('entire');
+    rnd = new Random();
+    r = rnd.nextInt(14);
+    return r;
+  }
+
+  int id(){
+    imid = rand();
+    return imid;
+  }
+
+  void findId(){
+    if (set == true) {
+      if (photo == true) {
+        find = false;
+        while (find != true) {
+          promid = id();
+          promids = '${promid}';
+          newId = 'i' + promids;
+          if (images[promid] == type) {
+            find = true;
+          } else {
+            find = false;
+          }
+        }
+      } else {
+        find = false;
+        while (find != true) {
+          promid = id();
+          promids = '${promid}';
+          newId = 'c' + promids;
+          if (collages[promid] == type) {
+            find = true;
+          } else {
+            find = false;
+          }
+        }
+      }
+    } else {
+      promid = id();
+      promids = '${promid}';
+      newId = 'i' + promids;
+    }
+    //return newId;
+  }
+
+
+
 
   //цвета для кнопок выбора
   Color _buttonColor1 = const Color(0xFFe9edf5);
@@ -84,6 +153,9 @@ class _SettingsState extends State<SettingsScreen>{
                                   IconButton(
                                       color: _buttonColor1, //меняем цвет: один выбранный параметр, остальные - нет
                                       onPressed: () {setState(() {
+                                        photo = false;
+                                        coll = true;
+                                        set = true;
                                         _buttonColor1 = const Color(0xFF5F7AC7);
                                         _buttonColor2 = const Color(0xFFe6f4ff);
                                       });}, //+ запись переменной для поиска в бд
@@ -111,6 +183,9 @@ class _SettingsState extends State<SettingsScreen>{
                                   IconButton(
                                       color: _buttonColor2,
                                       onPressed: () {setState(() {
+                                        photo = true;
+                                        coll = false;
+                                        set = true;
                                         _buttonColor2 = const Color(0xFF5F7AC7);
                                         _buttonColor1 = const Color(0xFFe6f4ff);
                                       });},
@@ -143,6 +218,8 @@ class _SettingsState extends State<SettingsScreen>{
                                   IconButton(
                                       color: _buttonColor21,
                                       onPressed: () {setState(() {
+                                        set = true;
+                                        type = 'портрет';
                                         _buttonColor21 = const Color(0xFF5F7AC7);
                                         _buttonColor22 = const Color(0xFFe6f4ff);
                                         _buttonColor23 = const Color(0xFFe6f4ff);
@@ -174,6 +251,8 @@ class _SettingsState extends State<SettingsScreen>{
                                   IconButton(
                                       color: _buttonColor22,
                                       onPressed: () {setState(() {
+                                        set = true;
+                                        type = 'творческая';
                                         _buttonColor22 = const Color(0xFF5F7AC7);
                                         _buttonColor21 = const Color(0xFFe6f4ff);
                                         _buttonColor23 = const Color(0xFFe6f4ff);
@@ -205,6 +284,8 @@ class _SettingsState extends State<SettingsScreen>{
                                   IconButton(
                                       color: _buttonColor23,
                                       onPressed: () {setState(() {
+                                        set = true;
+                                        type = 'fashion';
                                         _buttonColor23 = const Color(0xFF5F7AC7);
                                         _buttonColor22 = const Color(0xFFe6f4ff);
                                         _buttonColor21 = const Color(0xFFe6f4ff);
@@ -236,6 +317,8 @@ class _SettingsState extends State<SettingsScreen>{
                                   IconButton(
                                       color: _buttonColor24,
                                       onPressed: () {setState(() {
+                                        set = true;
+                                        type = 'стрит';
                                         _buttonColor24 = const Color(0xFF5F7AC7);
                                         _buttonColor22 = const Color(0xFFe6f4ff);
                                         _buttonColor23 = const Color(0xFFe6f4ff);
@@ -267,6 +350,8 @@ class _SettingsState extends State<SettingsScreen>{
                                   IconButton(
                                       color: _buttonColor25,
                                       onPressed: () {setState(() {
+                                        set = true;
+                                        type = 'город';
                                         _buttonColor25 = const Color(0xFF5F7AC7);
                                         _buttonColor22 = const Color(0xFFe6f4ff);
                                         _buttonColor23 = const Color(0xFFe6f4ff);
@@ -298,6 +383,8 @@ class _SettingsState extends State<SettingsScreen>{
                                   IconButton(
                                       color: _buttonColor26,
                                       onPressed: () {setState(() {
+                                        set = true;
+                                        type = 'анимал';
                                         _buttonColor26 = const Color(0xFF5F7AC7);
                                         _buttonColor22 = const Color(0xFFe6f4ff);
                                         _buttonColor23 = const Color(0xFFe6f4ff);
@@ -315,7 +402,9 @@ class _SettingsState extends State<SettingsScreen>{
                           alignment: Alignment.bottomCenter,
                           padding: const EdgeInsets.only(top: 18, bottom: 25),
                           child: OutlinedButton(
-                            onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const FirstScreen()));},
+                            onPressed: (){
+                              findId();
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const FirstScreen()));},
                             style: OutlinedButton.styleFrom(side: const BorderSide(color: Color(
                                 0xFF82AAFF), width: 2)),
                             child: const Text('Применить настройки',
