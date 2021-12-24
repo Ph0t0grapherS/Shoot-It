@@ -69,27 +69,7 @@ class _Notes extends State<Notes> {
                             style: TextStyle(color: Colors.white)),
                         subtitle: Text(res.note == null ? '' : res.note,
                             style: TextStyle(color: Colors.white70)),
-                        onTap: () {
-                          AlertDialog(title: const Text('Заметка:'),
-                            content: SingleChildScrollView(
-                              child: ListBody(
-                                children: <Widget>[
-                                  Text(res.title == null ? '' : res.title,
-                                      style: TextStyle(color: Colors.white)),
-                                  Text(res.note == null ? '' : res.note,
-                                      style: TextStyle(color: Colors.white70)),
-                                ],
-                              ),
-                            ),
-                            actions: <Widget>[
-                              TextButton(
-                                child: const Text('Закрыть'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();},
-                              ),
-                            ],
-                          );
-                        }
+                        onTap: (){_showNote(res);}
                     ),
                   )
                 );
@@ -103,6 +83,26 @@ class _Notes extends State<Notes> {
           tooltip: 'Add note',
           child: Icon(Icons.add),
         ),
+    );
+  }
+
+  Future<void> _showNote(var res) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(res.title == null ? '' : res.title),
+          content: SingleChildScrollView(
+            child: Text(res.note == null ? '' : res.note),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Закрыть'),
+              onPressed: () {Navigator.of(context).pop();},
+            ),
+         ]);
+      },
     );
   }
 }

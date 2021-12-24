@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shoot_it/pages/settings_screen.dart';
 import 'package:shoot_it/pages/view_screen.dart';
-//import 'dart:io';
-//import 'package:path_provider/path_provider.dart';
 import 'dart:math';
 import '../../navigation/popup_menu.dart';
 
@@ -18,19 +16,14 @@ class FirstScreen extends StatefulWidget {
 class _FirstScreen extends State<FirstScreen> {
 
 
-
-  //String imagePath;
   var rnd;
   int r;
   int imid;
   String tid;
 
   int rand() {
-    print('entire');
     rnd = new Random();
-    //imagePath = 'assets/images/i${r}.jpg';
     r = rnd.nextInt(14);
-    //print (r);
     return r;
   }
 
